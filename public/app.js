@@ -9,7 +9,7 @@ const APPS = [
 ];
 
 const DEFAULT_CONFIG = {
-  ideaRecipient: "alexandru.oltean@teagasc.ie",
+  ideaRecipient: "TeagascICTResearchInnovationteam@teagasc.ie",
   ideaSubjectPrefix: "[Automation Idea]"
 };
 
@@ -366,7 +366,6 @@ function buildMailto(payload) {
     `Name: ${payload.name || ""}`,
     `Email: ${payload.email || ""}`,
     `Business unit: ${payload.businessUnit || ""}`,
-    `Urgency: ${payload.urgency || ""}`,
     `Data sources: ${payload.dataSources || ""}`,
     `Expected benefits: ${payload.expectedBenefits || ""}`,
     "",
