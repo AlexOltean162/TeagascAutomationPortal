@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Teagasc Data Automation Portal</title>
+    <meta name="description" content="Teagasc data automation portal." />
+    <meta name="theme-color" content="#0b0d12" />
+    <link rel="preconnect" href="https://excelvalidator.teagasc.net/" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <svg
+      width="0"
+      height="0"
+      style="position: absolute; width: 0; height: 0"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <!--
+          Liquid Glass (refraction) via SVG displacement maps.
+          Applied via CSS `filter: url(#...)` on a dedicated glass layer.
+        -->
+        <filter
+          id="liquidGlassCard"
+          x="-0.2"
+          y="-0.2"
+          width="1.4"
+          height="1.4"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="objectBoundingBox"
+          color-interpolation-filters="sRGB"
+        >
+          <feImage
+            id="lg-map-card"
+            x="0"
+            y="0"
+            width="1"
+            height="1"
+            preserveAspectRatio="none"
+            result="displacement_map"
+          />
+          <feDisplacementMap
+            id="lg-disp-card"
+            in="SourceGraphic"
+            in2="displacement_map"
+            scale="0.04"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="lens"
+          />
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.9"
+            numOctaves="1"
+            seed="3"
+            stitchTiles="stitch"
+            result="noise"
+          >
+            <animate
+              attributeName="baseFrequency"
+              dur="10s"
+              values="0.86;0.9;0.86"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="lens"
+            in2="noise"
+            scale="0.105"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="liquid"
+          />
+          <feGaussianBlur in="liquid" stdDeviation="0.05" />
+        </filter>
+
+        <filter
+          id="liquidGlassBar"
+          x="-0.2"
+          y="-0.2"
+          width="1.4"
+          height="1.4"
+          filterUnits="objectBoundingBox"
+          primitiveUnits="objectBoundingBox"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.9"
+            numOctaves="1"
+            seed="7"
+            stitchTiles="stitch"
+            result="noise"
+          >
+            <animate
+              attributeName="baseFrequency"
+              dur="12s"
+              values="0.84;0.88;0.84"
+              repeatCount="indefinite"
+            />
+          </feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="0.003"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="liquid"
+          />
+          <feGaussianBlur in="liquid" stdDeviation="0.008 0.085" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="bg" aria-hidden="true">
+      <div class="bg__grid"></div>
+      <div class="bg__orbs">
+        <span class="orb orb--1"></span>
+        <span class="orb orb--2"></span>
+        <span class="orb orb--3"></span>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true"></div>
+          <div class="brand__text">
+            <div class="brand__title">Teagasc</div>
+            <div class="brand__sub">Automation Apps</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section" id="apps">
+        <div class="grid" id="appsGrid" aria-label="Automation apps grid"></div>
+      </section>
+
+      <section class="section" id="idea">
+        <div class="ideaLayout">
+          <div class="panel">
+            <div class="card__glass" aria-hidden="true"></div>
+            <form class="form panel__content" id="ideaForm" novalidate>
+              <div class="panel__head">
+                <h2 class="panel__title">Submit an automation / workflow improvement idea</h2>
+                <p class="panel__sub">
+                  Submissions are emailed to the ICT Research & Innovation team.
+                </p>
+              </div>
+
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Your email</span>
+                  <input class="field__input" type="email" name="email" autocomplete="email" />
+                </label>
+                <label class="field">
+                  <span class="field__label">Business unit <span class="req">*</span></span>
+                  <input class="field__input" name="businessUnit" required placeholder="e.g., Research / Operations" />
+                </label>
+              </div>
+
+              <label class="field">
+                <span class="field__label">Idea title <span class="req">*</span></span>
+                <input class="field__input" name="title" required maxlength="120" />
+              </label>
+
+              <label class="field">
+                <span class="field__label">Describe the workflow + the improvement you want <span class="req">*</span></span>
+                <textarea
+                  class="field__input field__textarea"
+                  name="description"
+                  required
+                  maxlength="5000"
+                  placeholder="What happens today? What should be automated/improved? What does success look like?"
+                ></textarea>
+              </label>
+
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Data sources</span>
+                  <input class="field__input" name="dataSources" placeholder="e.g., SharePoint, Excel, SQL, APIs" />
+                </label>
+                <label class="field">
+                  <span class="field__label">Expected benefits</span>
+                  <input class="field__input" name="expectedBenefits" placeholder="e.g., time saved, fewer errors" />
+                </label>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--primary" type="submit" id="submitBtn">Send idea</button>
+                <div class="form__status" id="formStatus" role="status" aria-live="polite"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
