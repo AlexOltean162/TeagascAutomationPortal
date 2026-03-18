@@ -10,7 +10,7 @@ const APPS = [
 ];
 
 const DEFAULT_CONFIG = {
-  ideaRecipient: "TeagascICTResearchInnovationteam@teagasc.ie",
+  ideaRecipient: "digital.innovations@teagasc.ie",
   ideaSubjectPrefix: "[Automation Idea]"
 };
 
