@@ -98,7 +98,7 @@ async function loadPortalConfig() {
   const ideaChannel = $("ideaChannel");
 
   try {
-    const resp = await fetch("/api/config", { headers: { Accept: "application/json" } });
+    const resp = await fetch("api/config", { headers: { Accept: "application/json" } });
     if (!resp.ok) return;
 
     const json = await resp.json().catch(() => null);
@@ -187,7 +187,7 @@ function setupIdeaForm() {
     setStatus("Submitting...");
 
     try {
-      const resp = await fetch("/api/ideas", {
+      const resp = await fetch("api/ideas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
