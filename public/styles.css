@@ -63,66 +63,64 @@ textarea {
 }
 
 .topbar__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  min-height: 78px;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 18px 0 16px;
 }
 
 .brand {
   display: inline-flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.brand__mark {
-  width: 52px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  background: transparent;
-  border: 1px solid rgba(47, 88, 51, 0.16);
-  box-shadow: 0 6px 14px rgba(53, 65, 51, 0.08);
-}
-
-.brand__logo {
-  width: 76%;
-  height: 76%;
-  display: block;
-  object-fit: contain;
+  justify-content: center;
+  text-align: center;
 }
 
 .brand__text {
   display: grid;
-  gap: 3px;
+  gap: 4px;
+  justify-items: center;
 }
 
 .brand__title {
-  font-size: 1rem;
+  font-size: clamp(1.45rem, 2.6vw, 2.2rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
 }
 
 .brand__sub {
-  font-size: 0.86rem;
+  font-size: clamp(0.98rem, 1.5vw, 1.15rem);
   color: var(--muted);
 }
 
 .nav {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-width: min(100%, 480px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 24px rgba(53, 65, 51, 0.06);
 }
 
 .nav__link {
-  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
   border-radius: 999px;
-  color: var(--muted);
-  transition: background-color 180ms ease, color 180ms ease;
+  color: var(--text);
+  font-weight: 600;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.nav__link--primary {
+  background: #2f5833;
+  color: #f7f8f4;
+  box-shadow: 0 8px 18px rgba(47, 88, 51, 0.22);
 }
 
 .nav__link:hover,
@@ -130,6 +128,12 @@ textarea {
   background: var(--accent-soft);
   color: var(--accent-strong);
   outline: none;
+}
+
+.nav__link--primary:hover,
+.nav__link--primary:focus-visible {
+  background: #244628;
+  color: #ffffff;
 }
 
 .section {
@@ -529,12 +533,24 @@ textarea {
   .topbar__inner,
   .footer__inner,
   .nav {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 
+  .topbar__inner {
+    padding: 16px 0 14px;
+    gap: 10px;
+  }
+
   .nav {
     gap: 6px;
+    min-width: 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   .nav__link,
